@@ -18,5 +18,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H blbs.logrus.cc >> ~/.ssh/known_hosts
+
       - name: Deploy to server
         run: ssh kukuff@blbs.logrus.cc 'bash ~/deploy.sh'
