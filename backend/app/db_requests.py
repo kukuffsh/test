@@ -37,7 +37,7 @@ def get_user_page(uid: int, db: Session):
     return {'user_data': user_line, 'user_posts': posts}
 
 
-def create_post(post: PostModel, uid: int, db: Session):
+def create_post(post: PostModel, uid: int, db: Session) -> Post:
     new_post = Post(uid=uid, title=post.title,
                     content=post.content, media_links=post.media_links)
     db.add(new_post)
