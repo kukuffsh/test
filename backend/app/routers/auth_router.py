@@ -3,7 +3,7 @@ from app.db_requests import create_new_user, user_login
 from app.models import UserDtoLogin, UserReg
 from sqlalchemy.orm import Session
 from app.config.database import create_session
-from app.auth.auth_handler import signJWT, token_response
+from app.auth.auth_handler import signJWT
 
 
 router = APIRouter(tags=['Auth'])
