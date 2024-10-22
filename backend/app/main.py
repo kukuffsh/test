@@ -12,7 +12,7 @@ app.include_router(auth_router.router)
 app.include_router(user_page_router.router)
 
 @app.get("/", dependencies=[Depends(JWTBearer())], tags=[""])
-def home():
+async def home():
     return {"message": f"Hello World!"}
 
 @app.on_event("startup")

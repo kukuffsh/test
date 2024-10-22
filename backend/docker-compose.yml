@@ -8,13 +8,13 @@ services:
     depends_on:
       - db
     env_file:
-      - .env  # Загрузить переменные из .env
+      - .env
 
   db:
     image: postgres
     container_name: postgres_db
     environment:
-      POSTGRES_USER: ${DB_USERNAME}       # Сопоставляем переменные из .env
+      POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
