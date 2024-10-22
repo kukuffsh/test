@@ -10,7 +10,7 @@ DB_HOST = config("DB_HOST")
 
 DATABASE_URL = f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_size=50,  max_overflow=100)
 
 Base.metadata.create_all(bind=engine)
 

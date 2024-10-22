@@ -9,12 +9,12 @@ from app.auth.auth_handler import signJWT
 router = APIRouter(tags=['Auth'])
 
 @router.post("/register")
-async def register_new_user(user: UserReg, db: Session = Depends(create_session)) -> dict[str, str]:
+def register_new_user(user: UserReg, db: Session = Depends(create_session)) -> dict[str, str]:
     new_user = create_new_user(user, db)
     return signJWT(new_user.id)
 
 @router.post("/login")
-async def login(user: UserDtoLogin, db: Session = Depends(create_session)) -> dict[str, str]:
+def login(user: UserDtoLogin, db: Session = Depends(create_session)) -> dict[str, str]:
     uid = user_login(user, db)
     if uid:
         return signJWT(uid)

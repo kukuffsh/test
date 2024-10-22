@@ -12,11 +12,11 @@ router = APIRouter(tags=['UserPage'])
 
 
 @router.get("/{user}", dependencies=[Depends(JWTBearer())], tags=[""])
-async def user_page(db: Session = Depends(create_session), jwt: JWTBearer = Depends(JWTBearer())):
+def user_page(db: Session = Depends(create_session), jwt: JWTBearer = Depends(JWTBearer())):
     uid = decodeJWT(jwt).get('user_id')
     return get_user_page(uid, db)
 
 @router.post("/create_post", dependencies=[Depends(JWTBearer())], tags=[""])
-async def new_post(post: PostModel, db: Session = Depends(create_session), jwt: JWTBearer = Depends(JWTBearer())):
+def new_post(post: PostModel, db: Session = Depends(create_session), jwt: JWTBearer = Depends(JWTBearer())):
     uid = decodeJWT(jwt).get('user_id')
     return create_post(post, uid, db)
